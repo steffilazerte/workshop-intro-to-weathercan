@@ -1,0 +1,29 @@
+project:
+  title: "Introduction to weathercan"
+  render:
+    - "index.qmd"
+
+format: 
+  revealjs:
+    author-steffi: true
+    title: "Introduction to weathercan"
+    subtitle: Québec-Océan Students 2025
+    date: today
+    date-format: iso
+    title-slide-attributes: 
+      data-background-image: figures/weathercan_logo.png
+      data-background-size: "25%"
+      data-background-position: "85% 50%"
+    logo: figures/weathercan_logo.png
+    template-partials:
+      - title-slide.html
+    theme: [default, styles.scss]
+    width: 1200
+    slide-number: true
+    fontsize: 1.7em
+
+brand: _brand.yml
+
+execute:
+  echo: true
+  message: true

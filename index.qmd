@@ -1,0 +1,606 @@
+# Preamble
+
+```{r}
+#| include: false
+options(width = 120)
+library(weathercan)
+```
+
+## Online workshops can be challenging
+
+:::{.fragment}
+### Consider keeping your video on [(if possible)]{.small}
+<!-- 
+- Kids? Pets? Spouses? No problem
+- But ultimately, you need be comfortable! [(and you absolutely have the right to privacy)]{.small} -->
+:::
+
+
+:::{.fragment}
+### Interrupt me!
+
+- Generally keep yourself muted but un-mute anytime to ask questions
+:::
+
+:::{.fragment}
+### Ask Questions!
+
+- Group trouble-shooting is really valuable
+- If you have a problem, others may also (or may have it in the future)
+:::
+
+:::{.fragment}
+### Screen-sharing
+
+- I may ask you to share your screen with the group [(feel free to decline)]{.small}
+- For privacy, close your email etc. Or just share your RStudio window
+:::
+
+# Introductions
+
+## Me and my creatures {background-color="black" background-image="figures/creatures.jpg"}
+
+## My garden {background-color="black" background-image="figures/garden.jpg"}
+
+## What about you?
+
+- Name
+- Background (Role, Area of study, etc.)
+- Familiarity with R or Programming
+- Creatures (furry, feathery, scaley, green or otherwise)?
+
+## About this Workshop
+<!-- In person -->
+
+### Format
+
+- I will provide you tools and workflow to get started with weathercan in R
+- We'll have hands-on activities, lectures, and demonstrations
+
+### R is hard: But have no fear!
+
+- [Don't expect to remember everything!]{.fragment .highlight-bold}
+- Copy/Paste is your friend (never apologize for using it!)
+- Consider this workshop a resource to return to
+
+
+![](figures/horst_need_a_moment.png){.absolute right=-75px bottom=0 width=45% fig-alt="A frustrated little monster sits on the ground with his hat next to him, saying \"I just need a minute.\" Looking on empathetically is the R logo, with the word \"Error\" in many different styles behind it."}
+
+[Artwork by [\@allison_horst](https://github.com/allisonhorst/stats-illustrations)]{.footnote}
+
+# Getting Started
+
+## R is a Programming language
+
+> A programming **language** is a way to give instructions in order to get a computer to do something
+
+- You need to know the language (i.e., the code)
+- Computers don't know what you mean, only what you type (unfortunately)
+- Spelling, punctuation, and capitalization all matter!
+
+### For example {.spacer}
+
+**R, what is 56 times 5.8?**
+
+```{r}
+#| code-line-numbers: false
+56 * 5.8
+```
+
+## Use code to tell R what to do
+
+::: fragment
+### R, what is the average of numbers 1, 2, 3, 4? {.spacer}
+
+```{r}
+#| code-line-numbers: false
+mean(c(1, 2, 3, 4))
+```
+:::
+
+::: fragment
+### R, save this value for later {.spacer}
+
+```{r}
+#| code-line-numbers: false
+steffis_mean <- mean(c(1, 2, 3, 4))
+```
+:::
+
+::: fragment
+### R, multiply this value by 6 {.spacer}
+
+```{r}
+#| code-line-numbers: false
+steffis_mean * 6
+```
+:::
+
+# Some Terminology
+
+## Code, Output, Scripts
+
+::: columns
+::: {.column width="50%"}
+### Code
+
+-   The actual commands
+
+### Output
+
+-   The result of running code or a script
+
+### Script
+
+-   A text file full of code that you want to run
+-   You should always keep your code in a script
+:::
+
+::: {.column width="50%"}
+### For example:
+
+```{r}
+#| code-line-numbers: false
+mean(c(1, 2, 3, 4))
+```
+
+[**Code**]{.absolute right="20" top="130"}
+[**Output**]{.absolute right="20" top="170"}
+
+![](figures/script.png){.absolute right="125" bottom="0" width="38%" fig-alt="A screenshot of a script in the RStudio window: many lines of code in a file called '4_analysis.R'"} 
+[**Script**]{.absolute right="20" top="230"}
+:::
+:::
+
+## weathercan vs. WeatherCAN
+
+::: {layout="[[-4, 5, -2, 5, -4]]" layout-valign="center"}
+![weathercan](figures/weathercan_logo.png){width="80%" fig-alt=""}
+
+![WeatherCAN](figures/ECCC_weathercan.png){width="85%" fig-alt=""}
+::: 
+
+- **weathercan** is not **WeatherCAN**
+- weathercan is an R package created by Steffi to access ECCC historical weather data
+- WeatherCAN is an App created by ECCC for accessing current weather on your photo
+
+> We're using weathercan today
+
+## RStudio vs. R
+
+::: {layout="[[-4, 5, -2, 5, -4]]" layout-valign="center"}
+![RStudio](figures/logo_rstudio.png){width="85%" fig-alt=""}
+
+![R](figures/logo_r.png){width="100%" fig-alt=""}
+::: 
+
+- **RStudio** is not **R**
+- RStudio is a User Interface or IDE (integrated development environment)
+    - (i.e., Makes coding simpler)
+
+> We're using both RStudio and R today
+
+## Open RStudio {.center}
+
+
+## ImpostR Syndrome {.hide-title}
+
+![](figures/impostR_en.png){.absolute top=10% fig-alt="Text reading \"Impost R Syndrome\" with the Blue R logo for the 'R'"}
+
+## ImpostR Syndrome {.hide-title}
+
+::: {layout="[[-100], [-100], [50,50]]"}
+![](figures/impostR_en.png){fig-alt="Text reading \"Impost R Syndrome\" with the Blue R logo for the 'R'"}
+
+![David Whittaker](figures/imposter.jpg){fig-alt="Two yellow circles. The one on the left has 'Imposter Syndrome' written above. Inside this yellow circle it says 'What I think others know', inside a small blue circle reads 'What I know'. The yellow circle on the right has 'Reality' written above. This yellow circle is made up of many small yellow circles with the label 'What others know', surrounding a small blue circle which reads 'What I know'"}
+:::
+
+
+:::{.fragment}
+> **Moral of the story?**
+>
+> Make friends, code in groups, learn together and don't beat yourself up
+:::
+
+## The Goal
+
+![](figures/horst_monster1.jpg){.absolute left="10" bottom="150" width="50%" fig-alt="An R-logo with a scary face, and a small scared little fuzzy monster holding up a white flag in surrender while under a dark storm cloud. The text above says \"at first I was like…\""}
+
+[Artwork by [\@allison_horst](https://github.com/allisonhorst/stats-illustrations)]{.footnote}
+
+. . .
+
+![](figures/horst_monster2.jpg){.absolute right="10" bottom="150" width="48%" fig-alt="A friendly, smiling R-logo jumping up to give a happy fuzzy monster a high-five under a smiling sun and next to colorful flowers. The text above reads \"but now it’s like…\""}
+
+# weathercan {background-image="figures/nami_sun.jpg" background-size="50%" background-position="right"}
+
+## weathercan {.nostretch}
+
+### What is weathercan?
+
+- Peer-reviewed R package `r emo::ji("popper")`
+- Bundle of functions for downloading ECCC historical weather data and normals
+![](figures/ropensci.svg){.absolute top=0 right=0 width=20% fig-alt='ropensci'}
+
+
+
+:::{.fragment}
+### Using weathercan in a nutshell
+
+```{r weathercan_start}
+#| cache: true
+#| eval: false
+library(weathercan) #<1>
+stations() #<2>
+stations_search("Brandon") #<3>
+w <- weather_dl("49909", start = "2025-09-01") #<4>
+n <- normals_dl("5010480") #<5>
+```
+
+1. Access weathercan functions with the `library()` function
+2. Use the `stations()` function to get a list of stations
+3. OR use the `stations_search()` function to search for a station
+4. Use `weather_dl()` to download recent data by *station_id*
+5. Use `normals_dl()` to download climate normals by *climate_id*
+:::
+
+:::{.fragment}
+> That's it! Workshop over `r emo::ji("grin")`
+:::
+
+## Using weathercan
+
+### Understanding the functions - Documentation
+- Online: <https://docs.ropensci.org/weathercan>
+- In RStudio: `?weather_dl`
+
+### Citing weathercan 
+- [Cite R and all R packages](https://ropensci.org/blog/2021/11/16/how-to-cite-r-and-r-packages/)
+
+```{r}
+citation("weathercan")
+```
+
+## Using weathercan
+
+### Understanding the data - Glossaries of terms
+
+- Three glossaries with datasets in weathercan: 
+    - [Flags](https://docs.ropensci.org/weathercan/articles/flags.html), `flags`
+    - [Weather Terms and Units](https://docs.ropensci.org/weathercan/articles/glossary.html), `glossary`
+    - [Climate Normal Terms and Units](https://docs.ropensci.org/weathercan/articles/glossary_normals.html), `glossary_normals`
+- All from ECCC, sometimes best to go to the source!
+
+```{r}
+flags
+```
+
+
+# Stations {background-image="figures/nami_snow.jpg" background-size="45%" background-position="right"}
+
+Where?
+
+
+<!-- TODO: Add map image to right -->
+
+## `stations()`
+
+### Included Data frame
+```{r stations}
+library(weathercan)
+stations()
+```
+
+## `stations_dl()`
+
+### Make sure it's up-to-date
+
+```{r stations_dl}
+#| message: true
+#| cache: true
+stations_dl()
+```
+
+:::{.fragment style="margin-top:25px"}
+
+```{r stations_meta}
+#| message: true
+#| cache: true
+stations_meta()
+```
+
+:::
+
+## `stations_search()`
+
+### By name
+
+```{r stations_search}
+stations_search(name = "Brandon")
+```
+
+## `stations_search()`
+### By date and interval
+```{r}
+stations_search(
+  name = "Brandon",
+  interval = "day",
+  starts_latest = 2020,
+  ends_earliest = 2025
+)
+```
+
+:::{.fragment}
+> Hmmm, that's a bit tough to read
+
+:::
+
+## Looking at tables
+
+1. Use `glimpse()` from the dplyr package
+
+```{r}
+stations_search(
+  name = "Brandon",
+  interval = "day",
+  starts_latest = 2020,
+  ends_earliest = 2025
+) |> dplyr::glimpse()
+```
+
+## Looking at tables
+
+2. Save as an object and use RStudio's viewer
+
+```{r}
+s <- stations_search(
+  name = "Brandon",
+  interval = "day",
+  starts_latest = 2020,
+  ends_earliest = 2025
+)
+```
+
+**After running this code, click on 's' in the Environment Pane**
+
+
+## `stations_search()`
+### By distance
+
+```{r}
+stations_search(coords = c(49.85, -99.91))
+```
+
+
+## `stations_search()`
+### Using dplyr package for advanced searching
+
+```{r}
+library(dplyr)
+library(stringr)
+
+stations() |>
+  filter(
+    str_detect(station_name, "BRANDON"),
+    interval == "day",
+    start <= 2020,
+    end >= 2025
+  )
+```
+
+> We're not actually using `stations_search()` at all here
+
+# Your turn!
+
+Locate a station of interest, take note of it's Station ID
+
+(Feel free to locate several stations)
+
+# Weather {background-image="figures/cats_summer.jpg" background-size="65%" background-position="right"}
+Historical hourly, daily,   
+or monthly weather
+
+## `weather_dl()` 
+
+### Find a station
+```{r}
+#| cache: true
+stations_search("brandon", interval = "day")
+```
+
+### Now download the data
+```{r}
+#| cache: true
+w <- weather_dl(station_id = 49909, interval = "day", start = "2025-01-01", end = "2025-08-31")
+```
+
+> weathercan uses 'caching' and will only download this data once per session
+
+## What do we have?
+
+```{r}
+w
+```
+
+:::{.fragment}
+> A lot of stuff, apparently...
+:::
+
+## What do we have?
+
+:::{style="font-size: 80%"}
+
+```{r}
+#| eval: false
+skimr::skim(w)
+```
+
+```{r}
+#| echo: false
+skimr::skim(w) |> print()
+```
+
+:::
+
+## What do we have?
+
+```{r}
+#| fig-alt: Scatterplot of mean temperature by date showing daily min/max ranges
+#| fig-align: center
+
+library(ggplot2)
+ggplot(data = w, aes(x = date, colour = mean_temp)) +
+  scale_color_viridis_c() +
+  geom_errorbar(aes(ymin = min_temp, ymax = max_temp)) +
+  geom_point(aes(y = mean_temp))  
+```
+
+## `weather_dl()`
+### Multiple stations at once
+```{r}
+#| cache: true
+#| message: true
+s <- stations_search("Brandon", interval = "day")
+w <- weather_dl(station_id = s$station_id, interval = "day", start = "2025-01-01", end = "2025-08-31")
+```
+
+> Some stations don't have data in this time range (makes sense if you look at their start/end ranges)
+
+## What do we have?
+
+```{r}
+#| fig-alt: Scatterplot of mean temperature by date showing daily min/max ranges for two stations
+#| fig-align: center
+#| fig-asp: 0.4
+#| out-width: '80%'
+
+ggplot(data = w, aes(x = date, colour = mean_temp)) +
+  scale_color_viridis_c() +
+  geom_errorbar(aes(ymin = min_temp, ymax = max_temp)) +
+  geom_point(aes(y = mean_temp))  +
+  facet_wrap(~ station_name)
+```
+
+# Your turn!
+
+Download some data for your station(s).
+
+Take a look at them!
+
+# Normals  {background-image="figures/vivi_fire.jpg" background-size="55%" background-position="right"}
+Climate normals and averages   
+calculated by ECCC for 30-year periods
+
+## `normals_dl()`
+
+### Find station
+
+```{r}
+stations_search("brandon", normals_years = "current")
+```
+
+### Now download the data
+
+```{r}
+#| cache: true
+n <- normals_dl(climate_id = "5010480")  # Note: climate_id!!
+```
+
+> 'current' may not be what you think it is...  
+> Run `?stations_search` or `?normals_dl` and look at the details of `normals_years`...
+
+## What do we have?
+
+```{r}
+n
+```
+
+> Oh weird! 'tibble's in the columns?
+
+## What do we have?
+
+Because weather normals data are so different from frost normals data, they are separate data frames.
+
+```{r}
+normals <- tidyr::unnest(n, "normals")
+frost <- tidyr::unnest(n, "frost")
+normals
+```
+
+
+## What do we have?
+```{r}
+#| fig-alt: Scatterplot of daily max temperature by month
+#| fig-align: center
+ggplot(data = normals, aes(x = period, colour = temp_daily_average)) +
+  geom_errorbar(aes(ymin = temp_extreme_min, ymax = temp_extreme_max), width = 0.2) +
+  geom_point(aes(y = temp_daily_average)) +
+  scale_colour_viridis_c() +
+  scale_y_continuous(breaks = seq(-50, 35, 5))
+```
+
+# In Conclusion... {background-image="figures/vivi_hibernating.jpg" background-size="50%" background-position="85%"}
+## In Conclusion... {background-image="figures/vivi_hibernating.jpg" background-size="35%" background-position="95% 15%"}
+
+- [Check weathercan Documentation](https://docs.ropensci.org/weathercan)
+- [Cite all R packages](https://ropensci.org/blog/2021/11/16/how-to-cite-r-and-r-packages/)
+- ECCC is your source of truth
+    - Climate Normals Technical documentation ([EN](https://www.canada.ca/en/environment-climate-change/services/climate-change/canadian-centre-climate-services/display-download/technical-documentation-climate-normals.html)|[FR](https://www.canada.ca/fr/environnement-changement-climatique/services/changements-climatiques/centre-canadien-services-climatiques/afficher-telecharger/documentation-technique-normales-climatiques.html))
+    - ECCC Glossary ([EN](https://climate.weather.gc.ca/glossary_e.html)|[FR](https://climat.meteo.gc.ca/glossary_f.html))
+
+
+:::{.fragment fragment-index=1 .absolute top=50% left=0 width=30%}
+### Thank you! 
+
+![](https://steffilazerte.ca/images/logo_eg.png)
+[{{< fa globe >}} [steffilazerte.ca](https://steffilazerte.ca)]{.small}<br>
+[{{< fa envelope >}} <sel@steffilazerte.ca>]{.small}
+:::
+
+:::{.fragment fragment-index=1}
+[*Slides created with [Quarto](https://quarto.org) Updated `r Sys.Date()`*]{.footnote}
+:::
+
+# Troubleshooting
+
+## No Data!
+```{r}
+#| cache: true
+#| message: true
+w <- weather_dl(station_id = 5256, interval = "day", start = "1950-07-01", end = "1951-08-31")
+```
+
+- Check the date range
+- Check the interval
+- Check for 'replacement' stations
+  - Stations near by that start up after your station
+
+```{r}
+#| echo: false
+stations_search(coords = c(46.5, -73.2), dist = 20)
+```
+
+
+## Map
+
+```{r}
+#| cache: false
+#| output-location: column
+library(mapview)
+library(sf)
+
+# Our point of interest
+# lat, lon = 49.85, -99.91
+
+# Get local stations
+s <- stations_search(
+  coords = c(49.85, -99.91), interval = "day", 
+  starts_latest = 2020, 
+  ends_earliest = 2020) |>  # lat, lon
+  st_as_sf(coords = c("lon", "lat"), crs = 4326)
+
+p <- st_sfc(st_point(c(-99.91, 49.85)), crs = 4326) # lon, lat
+
+# Interactive map of the stations with reference to our point of interest
+mapview(s, zcol = "distance") + mapview(p, col.regions = "black", cex = 20)
+```

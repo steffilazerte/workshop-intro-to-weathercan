@@ -1,0 +1,97 @@
+/*-- scss:defaults --*/
+$presentation-title-slide-text-align: left;
+$presentation-h1-text-shadow: 2px 2px #808080;
+
+$presentation-h2-font-size: 150%;
+$presentation-h3-font-size: 120%;
+
+$presentation-heading-text-shadow: 1px 1px #808080;
+
+$code-color: inherit;
+$code-block-font-size: 0.65em;
+$code-block-bg: #ebe8e8;
+$code-block-border-color: none;
+$code-highlight-color: yellow;
+
+/*-- scss:rules --*/
+.reveal h3,
+.reveal h4 {
+    text-shadow: none;
+    color: black;
+    margin-top: 20px;
+}
+
+.reveal .slide-logo {
+    max-height: 4em !important;
+}
+
+.reveal .cell-annotation dd {
+    font-size: 60%;
+    margin-top: 0.6em;
+}
+
+
+.bordered-box {
+    margin: 10px;
+    font-size: 90%;
+    border: 1px solid #c0c0c0;
+    border-radius: 8px;
+    padding: 10px;
+    padding-left: 20px;
+    background: #fafafa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    color: #555;
+}
+
+.bordered-box.center {
+    text-align: center;
+}
+
+
+.reveal .slide blockquote {
+    border: solid;
+    border-color: $brand-blue;
+    border-radius: 15px;
+    background-color: $brand-blue;
+    filter: drop-shadow(7px 7px 3px #808080) drop-shadow(0px 0px 5px $brand-blue);
+    color: white;
+    padding: 0.5em;
+    font-size: 90%;
+}
+
+figcaption {
+    text-align: center;
+}
+
+.reveal .slide .footnote {
+    position: absolute;
+    display: block;
+    color: grey;
+    font-size: 80%;
+    text-align: right;
+    right: 0;
+    bottom: 0;
+}
+
+/*https://revealjs.com/fragments/*/
+.fragment.highlight-bold {
+    opacity: 1 !important;
+    visibility: inherit !important;
+}
+
+.fragment.highlight-bold.visible {
+    font-weight: bold;
+}
+
+.reveal .cell-output pre code {
+    background: $code-block-bg;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 90%;
+    line-height: 1.5;
+    max-height: 600px;
+}
+
+.reveal .cell {
+    margin-bottom: 1em;
+}

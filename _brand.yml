@@ -1,0 +1,29 @@
+meta:
+  name: Steffi LaZerte
+  link: https://steffilazerte.ca
+
+logo: 
+  small: brand-steffi-sm.png
+  medium: brand-steffi-med.png
+
+color:
+  palette:
+    blue: "#1f508c"
+    pink: "#8c1f30"
+    purple: "#331353"
+  primary: blue
+  danger: pink
+
+typography:
+  fonts:
+    - family: Open Sans
+      source: google
+    - family: Fira Code
+      source: google
+  base: 
+    family: Open Sans
+    line-height: 1.25
+  headings:
+    color: primary
+    weight: bold
+  monospace: Fira Code
