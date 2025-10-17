@@ -2,7 +2,7 @@
 
 *Québec Océan - Comité étudiant - 2025*
 
-**XXXXX October XXnd, 2025 2pm-4pm Eastern**
+**Monday October 27th, 2025 2pm-4pm Eastern**
 
 Welcome! 
 
