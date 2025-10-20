@@ -37,13 +37,14 @@ This GitHub repository holds all the information relating to our workshop.
 
 -   Install R packages for following along
 
-    -   `weathercan` -> Note this requires a special installation method
+    -   `weathercan` -> Note this needs to be installed from a specific source (see below)
     -   `skimr`
     -   `dplyr`
     -   `tidyr`
     -   `ggplot2`
 
-    To install via R commands:
+    To install via R:  
+    (This installs weathercan from the Community R-Multiverse)
 
     ```
     install.packages(c("skimr", "dplyr", "tidyr", "ggplot2", "weathercan"),
