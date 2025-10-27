@@ -18,7 +18,7 @@ typography:
   fonts:
     - family: Open Sans
       source: google
-    - family: Fira Code
+    - family: Fira Mono
       source: google
   base: 
     family: Open Sans
@@ -26,4 +26,4 @@ typography:
   headings:
     color: primary
     weight: bold
-  monospace: Fira Code
+  monospace: Fira Mono

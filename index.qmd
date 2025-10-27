@@ -256,6 +256,8 @@ n <- normals_dl("5010480") #<5>
 
 ### Citing weathercan 
 - [Cite R and all R packages](https://ropensci.org/blog/2021/11/16/how-to-cite-r-and-r-packages/)
+- Cite *data* as ECCC historical weather data or Climate normals
+- Cite weathercan as *access to data*
 
 ```{r}
 citation("weathercan")
@@ -496,6 +498,7 @@ calculated by ECCC for 30-year periods
 ### Find station
 
 ```{r}
+#| message: true
 stations_search("brandon", normals_years = "current")
 ```
 
@@ -536,7 +539,8 @@ ggplot(data = normals, aes(x = period, colour = temp_daily_average)) +
   geom_errorbar(aes(ymin = temp_extreme_min, ymax = temp_extreme_max), width = 0.2) +
   geom_point(aes(y = temp_daily_average)) +
   scale_colour_viridis_c() +
-  scale_y_continuous(breaks = seq(-50, 35, 5))
+  scale_y_continuous(breaks = seq(-50, 35, 5)) +
+  labs(title = normals$normals_years[1])
 ```
 
 # In Conclusion... {background-image="figures/vivi_hibernating.jpg" background-size="50%" background-position="85%"}
